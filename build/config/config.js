@@ -7,7 +7,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
 dotenv_1.default.config();
 mongoose_1.default
-    .connect(`${process.env.MONGODB_URL}/xdatabase`)
+    .connect(`${process.env.ATLAS_URI}/xdatabase`)
     .then(() => console.log('connected to database'))
     .catch((e) => {
     console.log(e);

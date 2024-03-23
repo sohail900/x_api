@@ -1,13 +1,17 @@
 {
+    "version": 2,
     "builds": [
         {
-            "src": "src/**/*",
-            "use": "@now/node"
+            "src": "build/server.js",
+            "use": "@vercel/node",
+            "config": { "includeFiles": ["build/**"] }
         }
     ],
     "routes": [
-        { "handle": "filesystem" },
         { "src": "/api/v1/(.*)", "dest": "build/$1" },
-        { "src": "/(.*)", "dest": "build/index.js" }
+        {
+            "src": "/(.*)",
+            "dest": "build/server.js"
+        }
     ]
 }
