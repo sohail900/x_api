@@ -7,19 +7,19 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const http_1 = __importDefault(require("http"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const path_1 = __importDefault(require("path"));
 const router_1 = __importDefault(require("./router/router"));
 const errorMiddleware_1 = require("./middleware/error/errorMiddleware");
 require("./config/config");
 require("./config/cloudinaryConfig");
 const app = (0, express_1.default)();
+const server = http_1.default.createServer(app);
 //MIDDLEWARES
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use((0, cookie_parser_1.default)());
 app.use((0, cors_1.default)());
-app.use('/upload', express_1.default.static(path_1.default.resolve(__dirname, '../upload')));
-const server = http_1.default.createServer(app);
+//enable only for local file handling
+//app.use('/upload', express.static(path.resolve(__dirname, '../upload')))
 app.use('/api/v1', router_1.default);
 app.use(errorMiddleware_1.errMiddleware);
 //TODO: SERVER RUNNING ON PORT 3000

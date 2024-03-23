@@ -8,15 +8,14 @@ import { errMiddleware } from './middleware/error/errorMiddleware'
 import './config/config'
 import './config/cloudinaryConfig'
 const app = express()
+const server = http.createServer(app)
 //MIDDLEWARES
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(cors())
-
-app.use('/upload', express.static(path.resolve(__dirname, '../upload')))
-const server = http.createServer(app)
-
+//enable only for local file handling
+//app.use('/upload', express.static(path.resolve(__dirname, '../upload')))
 app.use('/api/v1', Router)
 app.use(errMiddleware)
 //TODO: SERVER RUNNING ON PORT 3000

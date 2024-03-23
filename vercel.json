@@ -7,5 +7,8 @@
             "config": { "includeFiles": ["build/**"] }
         }
     ],
-    "routes": [{ "src": "/api/v1/(.*)", "dest": "build/server.js" }]
+    "routes": [
+        { "src": "/api/v1/(.*)", "dest": "build/server.js" },
+        { "src": "/(.*)", "dest": "build/server.js" }
+    ]
 }
