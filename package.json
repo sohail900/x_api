@@ -4,13 +4,11 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "start": "nodemon src/server.ts",
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "rimraf build && tsc",
         "ts.check": "tsc --project tsconfig.json",
-        "add-build": "git add build",
-        "dev:ts": "tsc -w",
-        "dev:js": "nodemon ./build/server.js",
-        "start": "concurrently npm:dev:*"
+        "add-build": "git add build"
     },
     "pre-commit": [
         "ts.check",
