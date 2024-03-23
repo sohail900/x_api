@@ -11,6 +11,12 @@ const authUser_1 = __importDefault(require("../middleware/auth/authUser"));
   @SET EXPRESS ROUTER
 */
 const Router = express_1.default.Router();
+Router.route('/test').get((req, resp) => {
+    resp.status(200).send('TEST ROUTE').json({
+        success: true,
+        message: 'This is for testing router check if this work or not',
+    });
+});
 Router.route('/home').get(authUser_1.default, controller_1.getData);
 Router.route('/login').post(controller_1.loginUser);
 Router.route('/register').post(imageUploader_1.default.single('image'), controller_1.registerUser);

@@ -16,6 +16,12 @@ import authorizeUser from '../middleware/auth/authUser'
 */
 const Router = express.Router()
 
+Router.route('/test').get((req, resp) => {
+    resp.status(200).send('TEST ROUTE').json({
+        success: true,
+        message: 'This is for testing router check if this work or not',
+    })
+})
 Router.route('/home').get(authorizeUser, getData)
 Router.route('/login').post(loginUser)
 Router.route('/register').post(upload.single('image'), registerUser)
