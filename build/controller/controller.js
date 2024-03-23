@@ -60,13 +60,8 @@ const loginUser = async (req, resp, next) => {
         //TODO: Generate JWT tokens (....)
         const token = await registeredUser.generateToken();
         //TODO: Set the cookie with a more reasonable expiration time (e.g., 1 hour)
-        const expirationTime = new Date(Date.now() + 1 * 60 * 60 * 1000);
-        resp.status(200)
-            .cookie('cookie', token, {
-            expires: expirationTime,
-            httpOnly: true,
-        })
-            .json({
+        //const expirationTime = new Date(Date.now() + 1 * 60 * 60 * 1000)
+        resp.status(200).json({
             success: true,
             userInfo: registeredUser,
             token,

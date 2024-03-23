@@ -70,19 +70,14 @@ const loginUser = async (req: Request, resp: Response, next: NextFunction) => {
         //TODO: Generate JWT tokens (....)
         const token = await registeredUser.generateToken()
         //TODO: Set the cookie with a more reasonable expiration time (e.g., 1 hour)
-        const expirationTime = new Date(Date.now() + 1 * 60 * 60 * 1000)
+        //const expirationTime = new Date(Date.now() + 1 * 60 * 60 * 1000)
 
-        resp.status(200)
-            .cookie('cookie', token, {
-                expires: expirationTime,
-                httpOnly: true,
-            })
-            .json({
-                success: true,
-                userInfo: registeredUser,
-                token,
-                message: 'Login Successful',
-            })
+        resp.status(200).json({
+            success: true,
+            userInfo: registeredUser,
+            token,
+            message: 'Login Successful',
+        })
     } catch (error: any) {
         next(new ErrorHandler(500, 'Internal Server Error'))
     }
